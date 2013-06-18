@@ -247,3 +247,8 @@ form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
+
+ul.pagination li {
+	list-style: none;
+	display: block;
+}
