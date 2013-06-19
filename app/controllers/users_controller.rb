@@ -10,13 +10,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])  
+    @posts = @user.posts.paginate(:page => params[:page])
     @title = @user.name
   end
   
    def new
     @user = User.new
     @title = "Sign Up"
-  end
+   end
   
   def create
     @user = User.new(params[:user])
@@ -51,17 +52,18 @@ class UsersController < ApplicationController
   
   private
   
-  def authenticate
+    def authenticate
     deny_access unless signed_in?
   end
   
-  def correct_user
+    def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
   end
   
-def admin_user
-  user = User.find(params[:id])
-  redirect_to(root_path) if !current_user.admin? || current_user?(user)
+    def admin_user
+      user = User.find(params[:id])
+      redirect_to(root_path) if !current_user.admin? || current_user?(user)
+    end
 end
 
