@@ -7,7 +7,7 @@
       </h1>
 			<%= render 'follow_form' if signed_in? %>
       <% if @user.posts.any? %>
-        <table class="microposts" summary="User microposts">
+        <table class="posts" summary="User posts">
           <%= render @posts %>
         </table>
         <%= will_paginate @posts %>
